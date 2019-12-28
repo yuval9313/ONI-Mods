@@ -1,10 +1,11 @@
 ﻿using Database;
 using Harmony;
 using System.Collections.Generic;
+using AdvancedGeneratos.Generators;
+using static AdvancedGeneratos.Common.GeneratorCommonConstants;
 
 namespace AdvancedGeneratos
 {
-    using static Constans;
     [HarmonyPatch(typeof(GeneratedBuildings))]
     [HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
     public sealed class GeneratedBuildings_LoadGeneratedBuildings_Patch
