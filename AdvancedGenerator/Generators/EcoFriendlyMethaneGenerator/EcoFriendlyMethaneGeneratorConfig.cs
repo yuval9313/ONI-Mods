@@ -1,10 +1,10 @@
 ﻿using TUNING;
 using UnityEngine;
+using static AdvancedGeneratos.Common.CommonConstans;
+using static AdvancedGeneratos.Generators.EcoFriendlyMethaneGenerator;
 
-namespace AdvancedGeneratos
+namespace AdvancedGeneratos.Generators.Config
 {
-    using static Constans;
-    using static Constans.EcoFriendlyMethaneGenerator;
     public class EcoFriendlyMethaneGeneratorConfig : IBuildingConfig
     {
         public override BuildingDef CreateBuildingDef()

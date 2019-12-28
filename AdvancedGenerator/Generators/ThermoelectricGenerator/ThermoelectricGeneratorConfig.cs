@@ -1,10 +1,10 @@
 ﻿using TUNING;
 using UnityEngine;
+using static AdvancedGeneratos.Common.CommonConstans;
+using static AdvancedGeneratos.Generators.ThermoelectricGenerator;
 
 namespace AdvancedGeneratos
 {
-    using static Constans;
-    using static Constans.ThermoelectricGenerator;
     public class ThermoelectricGeneratorConfig : IBuildingConfig
     {
         public override BuildingDef CreateBuildingDef()

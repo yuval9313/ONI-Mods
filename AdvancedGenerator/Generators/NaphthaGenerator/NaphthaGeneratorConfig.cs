@@ -1,10 +1,10 @@
 ﻿using TUNING;
 using UnityEngine;
+using static AdvancedGeneratos.Common.CommonConstans;
+using static AdvancedGeneratos.Generators.NaphthaGenerator;
 
 namespace AdvancedGeneratos
 {
-    using static Constans;
-    using static Constans.NaphthaGenerator;
     public class NaphthaGeneratorConfig : IBuildingConfig
     {
         public override BuildingDef CreateBuildingDef()

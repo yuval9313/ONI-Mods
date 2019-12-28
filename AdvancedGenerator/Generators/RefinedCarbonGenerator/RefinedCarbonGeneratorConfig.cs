@@ -1,10 +1,10 @@
 ﻿using TUNING;
+using UnityEngine;
+using static AdvancedGeneratos.Common.CommonConstans;
+using static AdvancedGeneratos.Generators.RefinedCarbonGenerator;
 
-namespace AdvancedGeneratos
+namespace AdvancedGeneratos.Generators.Config
 {
-    using UnityEngine;
-    using static Constans;
-    using static Constans.RefinedCarbonGenerator;
     class RefinedCarbonGeneratorConfig : IBuildingConfig
     {
         public override BuildingDef CreateBuildingDef()
