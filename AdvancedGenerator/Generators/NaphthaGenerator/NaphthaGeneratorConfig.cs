@@ -58,7 +58,7 @@ namespace AdvancedGeneratos
             ec.consumptionRadius = 2;
             ec.isRequired = ec.storeOnConsume = true;
 
-            ConsumGasPowerGenerator aeg = go.AddOrGet<ConsumGasPowerGenerator>();
+            GasPoweredGenerator aeg = go.AddOrGet<GasPoweredGenerator>();
             aeg.InStorage = st;
             aeg.OutStorage = go.AddComponent<Storage>();
             aeg.Consumer = ec;

@@ -70,7 +70,7 @@ namespace AdvancedGeneratos.Generators.Config
             mdkg.requestedItemTag = Filter;
             mdkg.choreTypeIDHash = Db.Get().ChoreTypes.GeneratePower.Id;
 
-            ConsumGasPowerGenerator adg = go.AddOrGet<ConsumGasPowerGenerator>();
+            GasPoweredGenerator adg = go.AddOrGet<GasPoweredGenerator>();
             adg.Consumer = ec;
             adg.InOutItems = new EnergyGenerator.Formula
             {

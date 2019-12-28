@@ -1,6 +1,8 @@
-﻿namespace AdvancedGeneratos
+﻿using AdvancedGeneratos.Common;
+
+namespace AdvancedGeneratos
 {
-    public sealed class ConsumGasPowerGenerator : AdvancedEnergyGenerator
+    public sealed class GasPoweredGenerator : AdvancedEnergyGenerator
     {
         [MyCmpGet]
         public ElementConsumer Consumer;
