@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
+using static EnergyGenerator;
+using static EventSystem;
 
-namespace AdvancedGeneratos
+namespace AdvancedGeneratos.Common
 {
-    using static EnergyGenerator;
-    using static EventSystem;
     public class AdvancedEnergyGenerator : Generator
     {
         protected const int OnActivateChangeFlag = 824508782;
