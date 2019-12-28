@@ -1,7 +1,11 @@
-﻿namespace AdvancedGeneratos
+﻿using static STRINGS.UI;
+using static TUNING.BUILDINGS;
+
+namespace AdvancedGeneratos.Common
 {
-    internal class Constans
+    internal class GeneratorCommonConstants
     {
+
         public const string Kpath = "STRINGS.BUILDINGS.PREFABS.";
         public const int HITPT = HITPOINTS.TIER1;
         public const float ConstructTime = CONSTRUCTION_TIME_SECONDS.TIER3;

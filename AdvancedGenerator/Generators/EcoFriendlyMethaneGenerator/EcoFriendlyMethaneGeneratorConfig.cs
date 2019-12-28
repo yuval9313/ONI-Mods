@@ -1,6 +1,6 @@
 ﻿using TUNING;
 using UnityEngine;
-using static AdvancedGeneratos.Common.CommonConstans;
+using static AdvancedGeneratos.Common.GeneratorCommonConstants;
 using static AdvancedGeneratos.Generators.EcoFriendlyMethaneGenerator;
 
 namespace AdvancedGeneratos.Generators.Config
