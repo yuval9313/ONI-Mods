@@ -1,6 +1,6 @@
 ﻿using static TUNING.BUILDINGS;
 using static TUNING.MATERIALS;
-using static AdvancedGeneratos.Common.CommonConstans;
+using static AdvancedGeneratos.Common.GeneratorCommonConstants;
 
 namespace AdvancedGeneratos.Generators
 {
