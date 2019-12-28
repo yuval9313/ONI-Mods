@@ -80,15 +80,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvancedEnergyGenerator.cs" />
-    <Compile Include="Common\CommonConstans.cs" />
+    <Compile Include="Common\AdvancedEnergyGenerator.cs" />
+    <Compile Include="Common\GeneratorCommonConstants.cs" />
     <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGenerator.cs" />
     <Compile Include="Generators\NaphthaGenerator\NaphthaGenerator.cs" />
     <Compile Include="Generators\RefinedCarbonGenerator\RefinedCarbonGenerator.cs" />
     <Compile Include="Generators\ThermoelectricGenerator\ThermoelecticGenerator.cs" />
     <Compile Include="Generators\NaphthaGenerator\NaphthaGeneratorConfig.cs" />
     <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGeneratorConfig.cs" />
-    <Compile Include="Script\AirPowerGenerator.cs" />
+    <Compile Include="Script\GasPoweredGenerator.cs" />
     <Compile Include="Patchs.cs" />
     <Compile Include="Generators\RefinedCarbonGenerator\RefinedCarbonGeneratorConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
