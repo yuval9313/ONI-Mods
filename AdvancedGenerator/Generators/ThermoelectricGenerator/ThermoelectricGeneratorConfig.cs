@@ -26,13 +26,13 @@ namespace AdvancedGeneratos
             return bd;
         }
 
-        public override void DoPostConfigureUnderConstruction(GameObject go) => Register(go);
+        public override void DoPostConfigureUnderConstruction(GameObject go) => RegisterPorts(go);
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => Register(go);
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RegisterPorts(go);
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            Register(go);
+            RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
 
@@ -45,7 +45,7 @@ namespace AdvancedGeneratos
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        protected void Register(GameObject go) =>
-            GeneratedBuildings.RegisterLogicPorts(go, INPUT_PORTS);
+        protected void RegisterPorts(GameObject go) =>
+            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

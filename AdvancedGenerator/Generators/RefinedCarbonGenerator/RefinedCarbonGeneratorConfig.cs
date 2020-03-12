@@ -62,18 +62,18 @@ namespace AdvancedGeneratos.Generators.Config
             Tinkerable.MakePowerTinkerable(go);
         }
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => HelpFunc(go);
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RegisterPorts(go);
 
-        public override void DoPostConfigureUnderConstruction(GameObject go) => HelpFunc(go);
+        public override void DoPostConfigureUnderConstruction(GameObject go) => RegisterPorts(go);
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            HelpFunc(go);
+            RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        private void HelpFunc(GameObject go) =>
-            GeneratedBuildings.RegisterLogicPorts(go, INPUT_PORT_00);
+        private void RegisterPorts(GameObject go) =>
+            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

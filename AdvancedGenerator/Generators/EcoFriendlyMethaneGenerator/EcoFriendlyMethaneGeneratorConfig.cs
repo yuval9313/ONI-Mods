@@ -29,9 +29,9 @@ namespace AdvancedGeneratos.Generators.Config
             return bd;
         }
 
-        public override void DoPostConfigureUnderConstruction(GameObject go) => R(go);
+        public override void DoPostConfigureUnderConstruction(GameObject go) => RegisterPorts(go);
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => R(go);
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RegisterPorts(go);
 
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
@@ -94,12 +94,12 @@ namespace AdvancedGeneratos.Generators.Config
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            R(go);
+            RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        private void R(GameObject go) =>
-            GeneratedBuildings.RegisterLogicPorts(go, INPUT);
+        private void RegisterPorts(GameObject go) =>
+            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

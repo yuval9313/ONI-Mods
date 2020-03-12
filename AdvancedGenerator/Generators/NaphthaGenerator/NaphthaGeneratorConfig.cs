@@ -30,9 +30,9 @@ namespace AdvancedGeneratos
             return bd;
         }
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RPort(go);
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RegisterPorts(go);
 
-        public override void DoPostConfigureUnderConstruction(GameObject go) => RPort(go);
+        public override void DoPostConfigureUnderConstruction(GameObject go) => RegisterPorts(go);
 
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
@@ -80,12 +80,12 @@ namespace AdvancedGeneratos
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            RPort(go);
+            RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        protected void RPort(GameObject go) =>
-            GeneratedBuildings.RegisterLogicPorts(go, INPUT_PORT_00);
+        protected void RegisterPorts(GameObject go) =>
+            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }
