@@ -1,6 +1,7 @@
-﻿namespace AdvancedGeneratos
+﻿using static EventSystem;
+
+namespace AdvancedGeneratos
 {
-    using static EventSystem;
     public class ThermoelectricPowerGenerator : Generator
     {
         protected const int OnActivateChangeFlag = 824508782;

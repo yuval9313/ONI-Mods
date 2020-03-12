@@ -1,10 +1,10 @@
 ﻿using TUNING;
+using UnityEngine;
+using static AdvancedGeneratos.Common.GeneratorCommonConstants;
+using static AdvancedGeneratos.Generators.RefinedCarbonGenerator;
 
-namespace AdvancedGeneratos
+namespace AdvancedGeneratos.Generators.Config
 {
-    using UnityEngine;
-    using static Constans;
-    using static Constans.RefinedCarbonGenerator;
     class RefinedCarbonGeneratorConfig : IBuildingConfig
     {
         public override BuildingDef CreateBuildingDef()
@@ -62,18 +62,18 @@ namespace AdvancedGeneratos
             Tinkerable.MakePowerTinkerable(go);
         }
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => HelpFunc(go);
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RegisterPorts(go);
 
-        public override void DoPostConfigureUnderConstruction(GameObject go) => HelpFunc(go);
+        public override void DoPostConfigureUnderConstruction(GameObject go) => RegisterPorts(go);
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            HelpFunc(go);
+            RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        private void HelpFunc(GameObject go) =>
-            GeneratedBuildings.RegisterLogicPorts(go, INPUT_PORT_00);
+        private void RegisterPorts(GameObject go) =>
+            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using TUNING;
 using UnityEngine;
+using static AdvancedGeneratos.Common.GeneratorCommonConstants;
+using static AdvancedGeneratos.Generators.NaphthaGenerator;
 
 namespace AdvancedGeneratos
 {
-    using static Constans;
-    using static Constans.NaphthaGenerator;
     public class NaphthaGeneratorConfig : IBuildingConfig
     {
         public override BuildingDef CreateBuildingDef()
@@ -30,9 +30,9 @@ namespace AdvancedGeneratos
             return bd;
         }
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RPort(go);
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RegisterPorts(go);
 
-        public override void DoPostConfigureUnderConstruction(GameObject go) => RPort(go);
+        public override void DoPostConfigureUnderConstruction(GameObject go) => RegisterPorts(go);
 
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
@@ -58,7 +58,7 @@ namespace AdvancedGeneratos
             ec.consumptionRadius = 2;
             ec.isRequired = ec.storeOnConsume = true;
 
-            ConsumGasPowerGenerator aeg = go.AddOrGet<ConsumGasPowerGenerator>();
+            GasPoweredGenerator aeg = go.AddOrGet<GasPoweredGenerator>();
             aeg.InStorage = st;
             aeg.OutStorage = go.AddComponent<Storage>();
             aeg.Consumer = ec;
@@ -80,12 +80,12 @@ namespace AdvancedGeneratos
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            RPort(go);
+            RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        protected void RPort(GameObject go) =>
-            GeneratedBuildings.RegisterLogicPorts(go, INPUT_PORT_00);
+        protected void RegisterPorts(GameObject go) =>
+            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdvancedGeneratos</RootNamespace>
     <AssemblyName>AdvancedGenerators</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -43,22 +43,14 @@
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Build.Tasks" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -72,23 +64,25 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvancedEnergyGenerator.cs" />
-    <Compile Include="Constans.cs" />
-    <Compile Include="Compo1\NaphthaGeneratorConfig.cs" />
-    <Compile Include="Compo1\EcoFriendlyMethaneGeneratorConfig.cs" />
-    <Compile Include="Script\AirPowerGenerator.cs" />
+    <Compile Include="Common\AdvancedEnergyGenerator.cs" />
+    <Compile Include="Common\GeneratorCommonConstants.cs" />
+    <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGenerator.cs" />
+    <Compile Include="Generators\NaphthaGenerator\NaphthaGenerator.cs" />
+    <Compile Include="Generators\RefinedCarbonGenerator\RefinedCarbonGenerator.cs" />
+    <Compile Include="Generators\ThermoelectricGenerator\ThermoelecticGenerator.cs" />
+    <Compile Include="Generators\NaphthaGenerator\NaphthaGeneratorConfig.cs" />
+    <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGeneratorConfig.cs" />
+    <Compile Include="Script\GasPoweredGenerator.cs" />
     <Compile Include="Patchs.cs" />
-    <Compile Include="Compo1\RefinedCarbonGeneratorConfig.cs" />
+    <Compile Include="Generators\RefinedCarbonGenerator\RefinedCarbonGeneratorConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Compo1\ThermoelectricGeneratorConfig.cs" />
+    <Compile Include="Generators\ThermoelectricGenerator\ThermoelectricGeneratorConfig.cs" />
     <Compile Include="Script\ThermoelectricPowerGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,10 +1,10 @@
 ﻿using TUNING;
 using UnityEngine;
+using static AdvancedGeneratos.Common.GeneratorCommonConstants;
+using static AdvancedGeneratos.Generators.EcoFriendlyMethaneGenerator;
 
-namespace AdvancedGeneratos
+namespace AdvancedGeneratos.Generators.Config
 {
-    using static Constans;
-    using static Constans.EcoFriendlyMethaneGenerator;
     public class EcoFriendlyMethaneGeneratorConfig : IBuildingConfig
     {
         public override BuildingDef CreateBuildingDef()
@@ -29,9 +29,9 @@ namespace AdvancedGeneratos
             return bd;
         }
 
-        public override void DoPostConfigureUnderConstruction(GameObject go) => R(go);
+        public override void DoPostConfigureUnderConstruction(GameObject go) => RegisterPorts(go);
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => R(go);
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go) => RegisterPorts(go);
 
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
@@ -70,7 +70,7 @@ namespace AdvancedGeneratos
             mdkg.requestedItemTag = Filter;
             mdkg.choreTypeIDHash = Db.Get().ChoreTypes.GeneratePower.Id;
 
-            ConsumGasPowerGenerator adg = go.AddOrGet<ConsumGasPowerGenerator>();
+            GasPoweredGenerator adg = go.AddOrGet<GasPoweredGenerator>();
             adg.Consumer = ec;
             adg.InOutItems = new EnergyGenerator.Formula
             {
@@ -94,12 +94,12 @@ namespace AdvancedGeneratos
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            R(go);
+            RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        private void R(GameObject go) =>
-            GeneratedBuildings.RegisterLogicPorts(go, INPUT);
+        private void RegisterPorts(GameObject go) =>
+            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }
