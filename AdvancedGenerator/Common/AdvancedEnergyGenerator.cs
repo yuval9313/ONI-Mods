@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static EnergyGenerator;
 using static EventSystem;
@@ -51,12 +52,38 @@ namespace AdvancedGeneratos.Common
 
         protected virtual bool IsConvertible(float dt)
         {
-            for (int x = 0, max = InOutItems.inputs.Length; x < max; x++)
-                if (!(InStorage.FindFirstWithMass(InOutItems.inputs[x].tag) is PrimaryElement pe) ||
-                    pe.Mass < InOutItems.inputs[x].consumptionRate * dt)
-                    return false;
-
-            return true;
+            bool flag = true;
+            EnergyGenerator.InputItem[] inputs = InOutItems.inputs;
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                EnergyGenerator.InputItem inputItem = inputs[i];
+                List<GameObject> result = new List<GameObject>();
+                List<GameObject> gameObject = InStorage.Find(inputItem.tag, result);
+                if (gameObject != null)
+                {
+                    bool subflag = false;
+                    gameObject.ForEach(item =>
+                    {
+                        if (subflag)
+                        {
+                            return;
+                        }
+                        PrimaryElement component = item.GetComponent<PrimaryElement>();
+                        float num = inputItem.consumptionRate * dt;
+                        subflag = (component.Mass >= num);
+                    });
+                    flag = subflag;
+                }
+                else
+                {
+                    flag = false;
+                }
+                if (!flag)
+                {
+                    break;
+                }
+            }
+            return flag;
         }
 
         public override void EnergySim200ms(float dt)

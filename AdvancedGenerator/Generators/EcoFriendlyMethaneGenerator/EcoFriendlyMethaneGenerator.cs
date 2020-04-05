@@ -22,14 +22,14 @@ namespace AdvancedGeneratos.Generators
         public const float OxygenCosumRate = 0.1f;
         public const float ExhaustCO2 = 0.03f;
 
+        public static readonly Tag Filter = new Tag("Filter");
         public static readonly LocString NAME = Fal("Green Gas Generator", ID);
-        public static readonly LocString DESC = $"{Fal(" Natural Gas ", " METHANE ")} and {Fal(" Oxygen ", " OXYGEN ")}, using electricity and {Fal(" carbon dioxide ", " CARBONDIOXIDE ")}, and {Fal(" Water ", " WATER ")}.";
-        public const string EFFECT = "Requires oxygen and filtration media, and does not drain contaminated water.";
+        public static readonly LocString DESC = $"Converts {Fal("Natural Gas", " METHANE ")} into electrical {Fal("Power", "POWER")}, using {Fal("Oxygen", " OXYGEN ")} and {Fal("Sand", " SAND ")}.\nProduces {Fal("Carbon Dioxide", " CARBONDIOXIDE ")} and {Fal("Water", " WATER ")}";
+        public const string EFFECT = "Converts Natural Gas and Oxygen into electrical Power. Produces Carbon Dioxide and Water.";
 
         public static readonly string[] TMate = new[] { METAL, REFINED_METAL };
         public static readonly float[] TMass = new[] { MASS_KG.TIER5, MASS_KG.TIER1 };
 
-        public static readonly Tag Filter = new Tag("Filter");
 
         public const int Watt = 1000;
 
