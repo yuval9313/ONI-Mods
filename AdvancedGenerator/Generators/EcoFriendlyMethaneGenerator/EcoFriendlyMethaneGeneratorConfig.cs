@@ -69,7 +69,7 @@ namespace AdvancedGeneratos.Generators.Config
             mdkg.refillMass = 10;
             mdkg.requestedItemTag = Filter;
             mdkg.choreTypeIDHash = Db.Get().ChoreTypes.GeneratePower.Id;
-
+            
             GasPoweredGenerator adg = go.AddOrGet<GasPoweredGenerator>();
             adg.Consumer = ec;
             adg.InOutItems = new EnergyGenerator.Formula

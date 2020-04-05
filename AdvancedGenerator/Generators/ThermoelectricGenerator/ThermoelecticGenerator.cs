@@ -20,8 +20,8 @@ namespace AdvancedGeneratos.Generators
         public static readonly LogicPorts.Port[] INPUT_PORTS = GetPorts(new CellOffset(1, 0));
 
         public static readonly LocString NAME = Fal("Thermoelectric Generator", ID);
-        public static readonly LocString DESC = $"Removes {Fal("Heat", "HEAT")} from environment {-Heat_Self - Heat_Exhaust} kDTUs per second.";
-        public const string EFFECT = "Removes heat and produces electricity.";
+        public static readonly LocString DESC = $"Converts {Fal("Heat", "HEAT")} from environment to electrical {Fal("Power", "POWER")}.\n{-Heat_Self - Heat_Exhaust} kDTUs per second.";
+        public const string EFFECT = "Converts Heat and produces electricity.";
 
         public static readonly string[] Materials = new[] { REFINED_METAL };
         public static readonly float[] MateMassKg = new[] { MASS_KG.TIER4 };
