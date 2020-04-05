@@ -39,20 +39,14 @@ namespace AdvancedGeneratos
         {
             Add("AdvancedPowerRegulation", RefinedCarbonGenerator.ID);
             Add("Plastics", NaphthaGenerator.ID);
-            AddRange("RenewableEnergy", ThermoelectricGenerator.ID, EcoFriendlyMethaneGenerator.ID);
+            Add("RenewableEnergy", ThermoelectricGenerator.ID);
+            Add("ImprovedCombustion", EcoFriendlyMethaneGenerator.ID);
         }
 
         private static void Add(string group, string id)
         {
             List<string> tech = new List<string>(Techs.TECH_GROUPING[group]) { id };
             Techs.TECH_GROUPING[group] = tech.ToArray();
-        }
-
-        private static void AddRange(string g, params string[] ids)
-        {
-            List<string> tech = new List<string>(Techs.TECH_GROUPING[g]);
-            tech.AddRange(ids);
-            Techs.TECH_GROUPING[g] = tech.ToArray();
         }
     }
 }
