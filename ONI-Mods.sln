@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirLock", "AirLock\AirLock.csproj", "{F2FC364B-54E4-4FE6-94DC-72EA35D435FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,12 @@ Global
 		{A7BD7D5D-3834-4EFF-8875-FC51EBFE33E3}.Q3BETA|Any CPU.Build.0 = Q3BETA|Any CPU
 		{A7BD7D5D-3834-4EFF-8875-FC51EBFE33E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7BD7D5D-3834-4EFF-8875-FC51EBFE33E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2FC364B-54E4-4FE6-94DC-72EA35D435FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2FC364B-54E4-4FE6-94DC-72EA35D435FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2FC364B-54E4-4FE6-94DC-72EA35D435FA}.Q3BETA|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FC364B-54E4-4FE6-94DC-72EA35D435FA}.Q3BETA|Any CPU.Build.0 = Release|Any CPU
+		{F2FC364B-54E4-4FE6-94DC-72EA35D435FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FC364B-54E4-4FE6-94DC-72EA35D435FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
