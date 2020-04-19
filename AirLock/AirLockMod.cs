@@ -83,6 +83,10 @@ namespace AirLock
                         CellElementEvent doorOpen = CellEventLogger.Instance.DoorOpen;
                         SimMessages.ReplaceAndDisplaceElement(gameCell, elementID, doorOpen, mass, temperature, byte.MaxValue, 0, handle.index);
                     }
+                    else
+                    {
+                        return true;
+                    }
                 }
                 else
                 {
