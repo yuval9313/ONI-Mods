@@ -38,21 +38,9 @@ public class AirLockConfig : PressureDoorConfig
 
     public override void DoPostConfigureComplete(GameObject go)
     {
+        base.DoPostConfigureComplete(go);
         Door door = go.AddOrGet<Door>();
-        door.hasComplexUserControls = true;
         door.unpoweredAnimSpeed = 0.45f;
         door.poweredAnimSpeed = 5f;
-        door.doorClosingSoundEventName = "MechanizedAirlock_closing";
-        door.doorOpeningSoundEventName = "MechanizedAirlock_opening";
-        /*door.doorType = (Door.DoorType)100;*/
-        go.AddOrGet<ZoneTile>();
-        go.AddOrGet<AccessControl>();
-        go.AddOrGet<KBoxCollider2D>();
-        Prioritizable.AddRef(go);
-        go.AddOrGet<CopyBuildingSettings>().copyGroupTag = GameTags.Door;
-        go.AddOrGet<Workable>().workTime = 5f;
-        Object.DestroyImmediate(go.GetComponent<BuildingEnabledButton>());
-        go.GetComponent<AccessControl>().controlEnabled = true;
-        go.GetComponent<KBatchedAnimController>().initialAnim = "closed";
     }
 }
