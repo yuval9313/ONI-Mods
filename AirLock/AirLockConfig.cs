@@ -12,12 +12,12 @@ public class AirLockConfig : PressureDoorConfig
 		string anim = "door_external_kanim";
 		int hitpoints = 60;
 		float construction_time = 120f;
-		float[] tIER = BUILDINGS.CONSTRUCTION_MASS_KG.TIER5;
-		string[] aLL_METALS = MATERIALS.REFINED_METALS;
+		float[] mass = new[] { BUILDINGS.MASS_KG.TIER4, BUILDINGS.MASS_KG.TIER2 };
+		string[] materials = new[] { MATERIALS.REFINED_METAL, MATERIALS.BUILDINGFIBER }; ;
 		float melting_point = 1600f;
 		BuildLocationRule build_location_rule = BuildLocationRule.Tile;
 		EffectorValues nONE = NOISE_POLLUTION.NONE;
-		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(ID, width, height, anim, hitpoints, construction_time, tIER, aLL_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER1, nONE, 1f);
+		BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(ID, width, height, anim, hitpoints, construction_time, mass, materials, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER1, nONE, 1f);
         buildingDef.Overheatable = false;
         buildingDef.RequiresPowerInput = true;
         buildingDef.EnergyConsumptionWhenActive = 240;

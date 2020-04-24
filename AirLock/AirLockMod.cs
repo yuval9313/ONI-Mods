@@ -31,9 +31,8 @@ namespace AirLock
 		private static void Prefix(Db __instance)
 		{
 			Debug.Log(" === AirLock_Db_Initialize loaded === ");
-			List<string> ls = new List<string>((string[])Database.Techs.TECH_GROUPING["DupeTrafficControl"]);
-			ls.Add(AirLockConfig.ID);
-			Database.Techs.TECH_GROUPING["DupeTrafficControl"] = (string[])ls.ToArray();
+            List<string> tech = new List<string>(Database.Techs.TECH_GROUPING["Suits"]) { AirLockConfig.ID };
+            Database.Techs.TECH_GROUPING["Suits"] = tech.ToArray();
 		}
 	}
 
