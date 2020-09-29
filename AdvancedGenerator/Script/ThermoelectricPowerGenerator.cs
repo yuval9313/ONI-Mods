@@ -51,8 +51,8 @@ namespace AdvancedGeneratos
 
             if (!operational.IsOperational)
                 return;
-
-            GenerateJoules(WattageRating * dt);
+            
+            GenerateJoules(WattageRating * dt, true);
             selectable.SetStatusItem(Db.Get().StatusItemCategories.Power, Db.Get().BuildingStatusItems.Wattage, this);
         }
 
