@@ -1,8 +1,8 @@
 ﻿using static TUNING.BUILDINGS;
 using static TUNING.MATERIALS;
-using static AdvancedGeneratos.Common.GeneratorCommonConstants;
+using static AdvancedGenerators.Common.GeneratorCommonConstants;
 
-namespace AdvancedGeneratos.Generators
+namespace AdvancedGenerators.Generators
 {
     public class NaphthaGenerator
     {

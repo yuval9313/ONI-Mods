@@ -1,50 +1,60 @@
-﻿using UnityEngine;
-using static AdvancedGeneratos.Common.GeneratorCommonConstants;
+﻿using AdvancedGenerators.Script;
 using TUNING;
+using UnityEngine;
+using static AdvancedGenerators.Common.GeneratorCommonConstants;
 
-namespace AdvancedGeneratos
+namespace AdvancedGenerators.Generators.ThermoelectricGenerator
 {
     public class ThermoelectricGenerator : IBuildingConfig
     {
-        public const string ID = nameof(ThermoelectricGenerator);
-        const int Width = 4;
-        const int Height = 3;
+        public const string Id = nameof(ThermoelectricGenerator);
+        private const int Width = 4;
+        private const int Height = 3;
 
-        const string AnimationString = "generatormerc_kanim";
+        private const string AnimationString = "generatormerc_kanim";
 
-        const int HitPoints = 100;
-        const int ConstructionTime = 45;
-        readonly float[] MateMassKg = new[] { BUILDINGS.MASS_KG.TIER4 };
-        readonly string[] Materials = new[] { MATERIALS.REFINED_METAL };
+        private const int HitPoints = 100;
+        private const int ConstructionTime = 45;
+        private readonly float[] _mateMassKg = new[] {BUILDINGS.MASS_KG.TIER4};
+        private readonly string[] _materials = new[] {MATERIALS.REFINED_METAL};
 
-        readonly EffectorValues DecorRating = DECOR.BONUS.TIER0;
-        readonly EffectorValues NoisePollutionRating = NOISE_POLLUTION.NOISY.TIER6;
+        private readonly EffectorValues _decorRating = DECOR.BONUS.TIER0;
+        private readonly EffectorValues _noisePollutionRating = NOISE_POLLUTION.NOISY.TIER6;
 
-        public const int WATT = 250;
+        private const int Watt = 256;
 
-        public const int Heat_Self = -10;
-        public const int Heat_Exhaust = -118;
+        private const int HeatSelf = -10;
+        private const int HeatExhaust = -118;
 
-        public const float MinimumTemp = 283.15f;
-        public const float MeltingPoint = BUILDINGS.MELTING_POINT_KELVIN.TIER3;
+        private const float MinimumTemp = 283.15f;
+        private const float MeltingPoint = BUILDINGS.MELTING_POINT_KELVIN.TIER1;
 
-        public static readonly LogicPorts.Port[] INPUT_PORTS = GetPorts(new CellOffset(1, 0));
+        public static readonly LogicPorts.Port[] InputPorts = GetPorts(new CellOffset(1, 0));
 
-        public static readonly LocString NAME = Fal("Thermoelectric Generator", ID);
-        public static readonly LocString DESC = $"Converts {Fal("Heat", "HEAT")} from environment to electrical {Fal("Power", "POWER")}.\n{-Heat_Self - Heat_Exhaust} kDTUs per second.";
-        public const string EFFECT = "Converts Heat and produces electricity.";
+        public static readonly LocString Name = Fal("Thermoelectric Generator", Id);
 
+        public static readonly LocString Description =
+            $"Converts {Fal("Heat", "HEAT")} from environment to electrical {Fal("Power", "POWER")}.\n" +
+            $"{-HeatSelf - HeatExhaust} kDTUs per second.";
 
-        public static readonly string ID_UPPER = ID.ToUpper();
+        public const string Effect = "Converts Heat and produces electricity.";
+
+        public static string SliderTooltipKey = "STRINGS.UI.UISIDESCREENS.WIRELESS_AUTOMATION_SIDE_SCREEN.TOOLTIP";
+        public static string SliderTooltip = "Amount of heat that transfer from the environment to the generator.";
+
+        public static string SliderTitleKey = "STRINGS.UI.UISIDESCREENS.WIRELESS_AUTOMATION_SIDE_SCREEN.TITLE";
+        public static string SliderTitle = "Cooling aggressiveness";
+
+        public static readonly string IdUpper = Id.ToUpper();
 
         public override BuildingDef CreateBuildingDef()
         {
-            BuildingDef bd = BuildingTemplates.CreateBuildingDef(ID, Width, Height, AnimationString, HitPoints, ConstructTime,
-                MateMassKg, Materials, MeltingPoint, BuildLocationRule.OnFloor, DecorRating, NoisePollutionRating, 0.1f);
+            var bd = BuildingTemplates.CreateBuildingDef(Id, Width, Height, AnimationString, HitPoints, ConstructTime,
+                _mateMassKg, _materials, MeltingPoint, BuildLocationRule.OnFloor, _decorRating, _noisePollutionRating);
 
-            bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = WATT;
-            bd.ExhaustKilowattsWhenActive = Heat_Exhaust;
-            bd.SelfHeatKilowattsWhenActive = Heat_Self;
+            bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = Watt;
+            bd.SelfHeatKilowattsWhenActive = HeatSelf;
+            bd.ExhaustKilowattsWhenActive = HeatExhaust;
             bd.ViewMode = OverlayModes.Temperature.ID;
             bd.ModifiesTemperature = true;
 
@@ -73,7 +83,6 @@ namespace AdvancedGeneratos
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        protected void RegisterPorts(GameObject go) =>
-            GeneratedBuildings.RegisterSingleLogicInputPort(go);
+        private static void RegisterPorts(GameObject go) => GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

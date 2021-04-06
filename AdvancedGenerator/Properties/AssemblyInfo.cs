@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // general information about the assembly is
 // controlled. To modify information related to an assembly
 // change these property values
-[assembly: AssemblyTitle("AdvencedGenerators")]
+[assembly: AssemblyTitle("AdvancedGenerators")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AdvencedGenerators")]
+[assembly: AssemblyProduct("AdvancedGenerators")]
 [assembly: AssemblyCopyright("Copyright 2019. SuperComic. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

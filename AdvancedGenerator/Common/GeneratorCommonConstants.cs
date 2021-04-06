@@ -1,7 +1,7 @@
 ﻿using static STRINGS.UI;
 using static TUNING.BUILDINGS;
 
-namespace AdvancedGeneratos.Common
+namespace AdvancedGenerators.Common
 {
     internal class GeneratorCommonConstants
     {

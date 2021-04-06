@@ -1,9 +1,9 @@
 ﻿using TUNING;
 using UnityEngine;
-using static AdvancedGeneratos.Common.GeneratorCommonConstants;
-using static AdvancedGeneratos.Generators.EcoFriendlyMethaneGenerator;
+using static AdvancedGenerators.Common.GeneratorCommonConstants;
+using static AdvancedGenerators.Generators.EcoFriendlyMethaneGenerator;
 
-namespace AdvancedGeneratos.Generators.Config
+namespace AdvancedGenerators.Generators.Config
 {
     public class EcoFriendlyMethaneGeneratorConfig : IBuildingConfig
     {

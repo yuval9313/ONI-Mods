@@ -1,6 +1,6 @@
-﻿using AdvancedGeneratos.Common;
+﻿using AdvancedGenerators.Common;
 
-namespace AdvancedGeneratos
+namespace AdvancedGenerators
 {
     public sealed class GasPoweredGenerator : AdvancedEnergyGenerator
     {

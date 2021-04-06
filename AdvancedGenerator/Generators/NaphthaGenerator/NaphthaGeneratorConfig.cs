@@ -1,9 +1,9 @@
 ﻿using TUNING;
 using UnityEngine;
-using static AdvancedGeneratos.Common.GeneratorCommonConstants;
-using static AdvancedGeneratos.Generators.NaphthaGenerator;
+using static AdvancedGenerators.Common.GeneratorCommonConstants;
+using static AdvancedGenerators.Generators.NaphthaGenerator;
 
-namespace AdvancedGeneratos
+namespace AdvancedGenerators
 {
     public class NaphthaGeneratorConfig : IBuildingConfig
     {

@@ -1,9 +1,9 @@
 ﻿using TUNING;
 using UnityEngine;
-using static AdvancedGeneratos.Common.GeneratorCommonConstants;
-using static AdvancedGeneratos.Generators.RefinedCarbonGenerator;
+using static AdvancedGenerators.Common.GeneratorCommonConstants;
+using static AdvancedGenerators.Generators.RefinedCarbonGenerator;
 
-namespace AdvancedGeneratos.Generators.Config
+namespace AdvancedGenerators.Generators.Config
 {
     class RefinedCarbonGeneratorConfig : IBuildingConfig
     {
