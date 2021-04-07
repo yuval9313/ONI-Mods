@@ -19,7 +19,7 @@ namespace AdvancedGenerators.Generators
         public const float OxygenCosumRate = 0.1f;
         public const float ExhaustCO2 = 0.04f;
 
-        public static readonly LocString NAME = Fal("naphtha generator", ID);
+        public static readonly LocString NAME = Fal("Naphtha Generator", ID);
         public static readonly LocString DESC = $"{Fal(" Nafta ", " NAPHTHA ")} and {Fal(" Oxygen ", " OXYGEN ")} and electricity using {Fal(" Carbon Dioxide ", " CARBONDIOXIDE ")} To produce. ";
         public const string EFFC = "Need oxygen and fuel naphtha.";
 
