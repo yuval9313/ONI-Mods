@@ -1,18 +1,47 @@
-﻿using TUNING;
+﻿using AdvancedGenerators.Common;
+using Epic.OnlineServices.Stats;
+using TUNING;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
-using static AdvancedGenerators.Generators.RefinedCarbonGenerator;
 
-namespace AdvancedGenerators.Generators.Config
+namespace AdvancedGenerators.Generators
 {
-    class RefinedCarbonGeneratorConfig : IBuildingConfig
+    // ReSharper disable once ClassNeverInstantiated.Global
+    internal class RefinedCarbonGenerator : IBuildingConfig
     {
+        public const string Id = nameof(RefinedCarbonGenerator);
+        private const string AnimationString = "generatorphos_kanim";
+
+        public static readonly LocString Name = Fal("Refined Carbon Generator", Id);
+        public static readonly LocString Description =
+            $"Converts {Fal("Refined Carbon", "REFINEDCARBON")} into {Fal("Power", "POWER")}. " + 
+            $"Produces more electricity than {Fal("Coal generator ", "GENERATOR")}.";
+        public static readonly string Effect =
+            $"Burns {Fal("Refined Carbon", "REFINEDCARBON")} and produces a lot of {Fal("Power", "POWER")}.";
+
+        private const int HitPoints = GeneratorCommonConstants.HitPoints;
+        private const float ConstructTime = GeneratorCommonConstants.ConstructionTime;
+        private const float MeltingPoint = GeneratorCommonConstants.MeltingPoint;
+        
+        private const int Watt = 1200;
+        private const float CarbonBurnRate = 1f;
+        private const float CarbonCapacity = 500f;
+        private const float RefillCapacity = 100f;
+
+        private const float Co2GenerationRate = 0.02f;
+        private const float OutCo2Temperature = 348.15f;
+
+        private static readonly string[] Materials = new[] { MATERIALS.METAL, MATERIALS.BUILDABLERAW };
+        private static readonly float[] MateMassKg = new[] { BUILDINGS.MASS_KG.TIER5, BUILDINGS.MASS_KG.TIER4 };
+
+        public static readonly string IdUpper = Id.ToUpper();
+        
         public override BuildingDef CreateBuildingDef()
         {
-            BuildingDef bd = BuildingTemplates.CreateBuildingDef(ID, 3, 3, AnimSTR, HITPT, ConstructTime,
+            var bd = BuildingTemplates.CreateBuildingDef(Id, 3, 3, AnimationString, HitPoints, ConstructTime,
                 MateMassKg, Materials, MeltingPoint, BuildLocationRule.OnFloor, DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER5);
 
-            bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = WATT;
+            bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = Watt;
             bd.ExhaustKilowattsWhenActive = 0f;
             bd.SelfHeatKilowattsWhenActive = 4f;
             bd.ViewMode = OverlayModes.Power.ID;
@@ -27,37 +56,36 @@ namespace AdvancedGenerators.Generators.Config
         {
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
 
-            Tag t = GameTagExtensions.Create(SimHashes.RefinedCarbon);
+            var t = GameTagExtensions.Create(SimHashes.RefinedCarbon);
 
-            EnergyGenerator eg = go.AddOrGet<EnergyGenerator>();
+            var eg = go.AddOrGet<EnergyGenerator>();
             eg.formula = new EnergyGenerator.Formula
             {
                 inputs = new EnergyGenerator.InputItem[]
                 {
-                    new EnergyGenerator.InputItem(t, CARBONE_BURN_RATE, CARBONE_CAPACITY)
+                    new EnergyGenerator.InputItem(t, CarbonBurnRate, CarbonCapacity)
                 },
                 outputs = new EnergyGenerator.OutputItem[]
                 {
-                    new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, CO2_GEN_RATE, false, new CellOffset(1, 0), OUT_CO2_TEMP)
+                    new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, Co2GenerationRate, false, new CellOffset(1, 0), OutCo2Temperature)
                 }
             };
             eg.powerDistributionOrder = 8;
 
-            Storage st = go.AddOrGet<Storage>();
-            st.capacityKg = CARBONE_CAPACITY;
+            var st = go.AddOrGet<Storage>();
+            st.capacityKg = CarbonCapacity;
             st.showInUI = true;
 
             go.AddOrGet<LoopingSounds>();
             Prioritizable.AddRef(go);
 
-            ManualDeliveryKG mdkg = go.AddOrGet<ManualDeliveryKG>();
-            mdkg.allowPause = false;
-            mdkg.SetStorage(st);
-            mdkg.requestedItemTag = t;
-            mdkg.capacity = st.capacityKg;
-            mdkg.refillMass = REFILL_CAPACITY;
-            // mdkg.choreTags = new Tag[] { GameTags.ChoreTypes.Power };
-            mdkg.choreTypeIDHash = Db.Get().ChoreTypes.PowerFetch.IdHash;
+            var manualDeliveryKg = go.AddOrGet<ManualDeliveryKG>();
+            manualDeliveryKg.allowPause = false;
+            manualDeliveryKg.SetStorage(st);
+            manualDeliveryKg.requestedItemTag = t;
+            manualDeliveryKg.capacity = st.capacityKg;
+            manualDeliveryKg.refillMass = RefillCapacity;
+            manualDeliveryKg.choreTypeIDHash = Db.Get().ChoreTypes.PowerFetch.IdHash;
 
             Tinkerable.MakePowerTinkerable(go);
         }
@@ -73,7 +101,7 @@ namespace AdvancedGenerators.Generators.Config
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
 
-        private void RegisterPorts(GameObject go) =>
+        private static void RegisterPorts(GameObject go) =>
             GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }
