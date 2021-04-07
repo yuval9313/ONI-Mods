@@ -1,9 +1,11 @@
-﻿using TUNING;
+﻿using AdvancedGenerators.Common;
+using TUNING;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
 
-namespace AdvancedGenerators.Generators.ThermoelectricGenerator
+namespace AdvancedGenerators.Generators
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class ThermoelectricGenerator : IBuildingConfig
     {
         public const string Id = nameof(ThermoelectricGenerator);
@@ -12,8 +14,8 @@ namespace AdvancedGenerators.Generators.ThermoelectricGenerator
 
         private const string AnimationString = "generatormerc_kanim";
 
-        private const int HitPoints = 100;
-        private const int ConstructionTime = 45;
+        private const int HitPoints = GeneratorCommonConstants.HitPoints;
+        private const float ConstructionTime = GeneratorCommonConstants.ConstructionTime;
         private readonly float[] _mateMassKg = new[] {BUILDINGS.MASS_KG.TIER4};
         private readonly string[] _materials = new[] {MATERIALS.REFINED_METAL};
 
@@ -48,7 +50,7 @@ namespace AdvancedGenerators.Generators.ThermoelectricGenerator
 
         public override BuildingDef CreateBuildingDef()
         {
-            var bd = BuildingTemplates.CreateBuildingDef(Id, Width, Height, AnimationString, HitPoints, ConstructTime,
+            var bd = BuildingTemplates.CreateBuildingDef(Id, Width, Height, AnimationString, HitPoints, ConstructionTime,
                 _mateMassKg, _materials, MeltingPoint, BuildLocationRule.OnFloor, _decorRating, _noisePollutionRating);
 
             bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = Watt;
