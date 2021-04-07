@@ -1,20 +1,49 @@
 ﻿using TUNING;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
-using static AdvancedGenerators.Generators.NaphthaGenerator;
 
-namespace AdvancedGenerators
+namespace AdvancedGenerators.Generators
 {
-    public class NaphthaGeneratorConfig : IBuildingConfig
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public class NaphthaGenerator : IBuildingConfig
     {
+        public const string Id = nameof(NaphthaGenerator);
+
+        private const string AnimationString = "generatorpetrol_kanim";
+
+        private const int HeatSelf = 8;
+        private const int HeatExhaust = 1;
+
+        private const float UseNaphtha = 1f;
+        private const float NaphthaMaxStored = 10;
+        private const float OxygenMaxStored = 1f;
+        private const float OxygenConsumptionRate = 0.1f;
+        private const float ExhaustCo2 = 0.04f;
+
+        private const int Watt = 850;
+        
+        public static readonly LocString Name = Fal("Naphtha Generator", Id);
+
+        public static readonly LocString Description =
+            "Produce more power than coal, Using naphtha and oxygen, but emits heat and exhaust.";
+        public static readonly string Effect = 
+            $"Uses {Fal("Naphtha", "NAPHTHA")} and {Fal("Oxygen", "OXYGEN")} to produce " + 
+            $"{Fal("Power", "POWER")} and exhaust {Fal("Carbon Dioxide", "CARBONDIOXIDE")}.";
+
+        private static readonly string[] Materials = new[] { MATERIALS.REFINED_METAL, MATERIALS.PLASTIC };
+        private static readonly float[] MateMassKg = new[] { BUILDINGS.MASS_KG.TIER3, BUILDINGS.MASS_KG.TIER3 };
+
+
+        public static readonly string IdUpper = Id.ToUpper();
+        
         public override BuildingDef CreateBuildingDef()
         {
-            BuildingDef bd = BuildingTemplates.CreateBuildingDef(ID, 3, 4, ANISTR, 100, 100,
+            var bd = BuildingTemplates.CreateBuildingDef(Id, 3, 4, AnimationString, 100, 100,
                 MateMassKg, Materials, MeltingPoint, BuildLocationRule.OnFloor, DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER4);
 
             bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = Watt;
-            bd.ExhaustKilowattsWhenActive = Heat_Exhaust;
-            bd.SelfHeatKilowattsWhenActive = Heat_Self;
+            bd.ExhaustKilowattsWhenActive = HeatExhaust;
+            bd.SelfHeatKilowattsWhenActive = HeatSelf;
 
             bd.ViewMode = OverlayModes.Power.ID;
 
@@ -39,26 +68,26 @@ namespace AdvancedGenerators
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
             go.AddOrGet<LoopingSounds>();
 
-            Storage st = go.AddOrGet<Storage>();
+            var st = go.AddOrGet<Storage>();
             st.showInUI = true;
 
-            ConduitConsumer cc = go.AddOrGet<ConduitConsumer>();
+            var cc = go.AddOrGet<ConduitConsumer>();
             cc.conduitType = ConduitType.Liquid;
             cc.consumptionRate = 10;
             cc.capacityKG = 100;
             cc.forceAlwaysSatisfied = true;
             cc.wrongElementResult = ConduitConsumer.WrongElementResult.Dump;
 
-            ElementConsumer ec = go.AddOrGet<ElementConsumer>();
+            var ec = go.AddOrGet<ElementConsumer>();
             ec.storage = st;
             ec.configuration = ElementConsumer.Configuration.Element;
             ec.elementToConsume = SimHashes.Oxygen;
-            ec.capacityKG = Oxygen_MaxStored;
-            ec.consumptionRate = OxygenCosumRate;
+            ec.capacityKG = OxygenMaxStored;
+            ec.consumptionRate = OxygenConsumptionRate;
             ec.consumptionRadius = 2;
             ec.isRequired = ec.storeOnConsume = true;
 
-            GasPoweredGenerator aeg = go.AddOrGet<GasPoweredGenerator>();
+            var aeg = go.AddOrGet<GasPoweredGenerator>();
             aeg.InStorage = st;
             aeg.OutStorage = go.AddComponent<Storage>();
             aeg.Consumer = ec;
@@ -66,12 +95,12 @@ namespace AdvancedGenerators
             {
                 inputs = new EnergyGenerator.InputItem[]
                 {
-                    new EnergyGenerator.InputItem(SimHashes.Naphtha.CreateTag(), UseNaphtha, Naphtha_MaxStored),
-                    new EnergyGenerator.InputItem(SimHashes.Oxygen.CreateTag(), ExhaustCO2, Oxygen_MaxStored)
+                    new EnergyGenerator.InputItem(SimHashes.Naphtha.CreateTag(), UseNaphtha, NaphthaMaxStored),
+                    new EnergyGenerator.InputItem(SimHashes.Oxygen.CreateTag(), ExhaustCo2, OxygenMaxStored)
                 },
                 outputs = new EnergyGenerator.OutputItem[]
                 {
-                    new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, ExhaustCO2, false, new CellOffset(0, 0), 320.15f)
+                    new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, ExhaustCo2, false, new CellOffset(0, 0), 320.15f)
                 }
             };
 

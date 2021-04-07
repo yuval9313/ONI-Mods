@@ -28,11 +28,11 @@ namespace AdvancedGenerators
 #endif
             ModUtil.AddBuildingToPlanScreen(TabCategory, RefinedCarbonGenerator.Id);
             ModUtil.AddBuildingToPlanScreen(TabCategory, ThermoelectricGenerator.Id);
-            ModUtil.AddBuildingToPlanScreen(TabCategory, NaphthaGenerator.ID);
+            ModUtil.AddBuildingToPlanScreen(TabCategory, NaphthaGenerator.Id);
             ModUtil.AddBuildingToPlanScreen(TabCategory, EcoFriendlyMethaneGenerator.ID);
             
             InsertToTechTree("AdvancedPowerRegulation", RefinedCarbonGenerator.Id);
-            InsertToTechTree("Plastics", NaphthaGenerator.ID);
+            InsertToTechTree("Plastics", NaphthaGenerator.Id);
             InsertToTechTree("RenewableEnergy", ThermoelectricGenerator.Id);
             InsertToTechTree("ImprovedCombustion", EcoFriendlyMethaneGenerator.ID);
         }
@@ -56,7 +56,7 @@ namespace AdvancedGenerators
         {
             SetString(RefinedCarbonGenerator.IdUpper, RefinedCarbonGenerator.Name, RefinedCarbonGenerator.Description, RefinedCarbonGenerator.Effect);
             SetString(ThermoelectricGenerator.IdUpper, ThermoelectricGenerator.Name, ThermoelectricGenerator.Description, ThermoelectricGenerator.Effect);
-            SetString(NaphthaGenerator.ID_UPPER, NaphthaGenerator.NAME, NaphthaGenerator.DESC, NaphthaGenerator.EFFC);
+            SetString(NaphthaGenerator.IdUpper, NaphthaGenerator.Name, NaphthaGenerator.Description, NaphthaGenerator.Effect);
             SetString(EcoFriendlyMethaneGenerator.ID_UPPER, EcoFriendlyMethaneGenerator.NAME, EcoFriendlyMethaneGenerator.DESC, EcoFriendlyMethaneGenerator.EFFECT);
         }
         
