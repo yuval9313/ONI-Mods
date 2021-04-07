@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AdvancedGenerators")]
-[assembly: AssemblyCopyright("Copyright 2019. SuperComic. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright © 2021. Yuval Levi. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 // Build value and revision number are automatically set by specifying all values or using '*' as shown below
 // can be specified
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 // [assembly: SuperComicModDesc("고급 발전기", "다양한 발전기를 추가해줍니다!", ModAttributes.MoreContent | ModAttributes.Helpful | ModAttributes.Generator | ModAttributes.Cooler | ModAttributes.Convenient | ModAttributes.EcoFriendly)]

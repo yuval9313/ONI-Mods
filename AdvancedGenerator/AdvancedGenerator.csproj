@@ -31,14 +31,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Q3BETA|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Q3BETA\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SPACED_OUT|AnyCPU' ">
+    <OutputPath>bin\spaced-out\</OutputPath>
+    <DefineConstants>SPACED_OUT</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'VANILLA|AnyCPU' ">
+    <OutputPath>bin\vanilla\</OutputPath>
+    <DefineConstants>VANILLA</DefineConstants>
+    <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -59,7 +60,6 @@
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Build.Tasks" />
     <Reference Include="System" />
     <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\System.dll</HintPath>
@@ -73,10 +73,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web.RegularExpressions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
@@ -95,7 +93,6 @@
     <Compile Include="Common\GeneratorCommonConstants.cs" />
     <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGenerator.cs" />
     <Compile Include="Generators\NaphthaGenerator\NaphthaGenerator.cs" />
-    <Compile Include="Generators\RefinedCarbonGenerator\RefinedCarbonGenerator.cs" />
     <Compile Include="Generators\NaphthaGenerator\NaphthaGeneratorConfig.cs" />
     <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGeneratorConfig.cs" />
     <Compile Include="Generators\ThermoelectricPowerGenerator.cs" />
