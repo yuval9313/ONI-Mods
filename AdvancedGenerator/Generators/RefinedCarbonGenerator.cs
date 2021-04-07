@@ -13,11 +13,12 @@ namespace AdvancedGenerators.Generators
         private const string AnimationString = "generatorphos_kanim";
 
         public static readonly LocString Name = Fal("Refined Carbon Generator", Id);
+
         public static readonly LocString Description =
-            $"Converts {Fal("Refined Carbon", "REFINEDCARBON")} into {Fal("Power", "POWER")}. " + 
-            $"Produces more electricity than {Fal("Coal generator ", "GENERATOR")}.";
+            "Produce much more electricity than coal generator, by burning refined carbon, emits exhaust";
+
         public static readonly string Effect =
-            $"Burns {Fal("Refined Carbon", "REFINEDCARBON")} and produces a lot of {Fal("Power", "POWER")}.";
+            $"Burns {Fal("Refined Carbon", "REFINEDCARBON")} into {Fal("Power", "POWER")}.";
 
         private const int HitPoints = GeneratorCommonConstants.HitPoints;
         private const float ConstructTime = GeneratorCommonConstants.ConstructionTime;
