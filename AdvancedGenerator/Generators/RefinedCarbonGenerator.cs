@@ -47,7 +47,7 @@ namespace AdvancedGenerators.Generators
             bd.SelfHeatKilowattsWhenActive = 4f;
             bd.ViewMode = OverlayModes.Power.ID;
 
-            bd.AudioCategory = AU_HOLLOWMETAL;
+            bd.AudioCategory = HollowMetalAudio;
             bd.AudioSize = "large";
 
             return bd;

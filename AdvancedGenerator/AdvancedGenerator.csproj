@@ -95,11 +95,11 @@
     <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGeneratorConfig.cs" />
     <Compile Include="Generators\NaphthaGenerator.cs" />
     <Compile Include="Generators\ThermoelectricPowerGenerator.cs" />
+    <Compile Include="Generators\ThermoelectricGenerator.cs" />
     <Compile Include="Generators\RefinedCarbonGenerator.cs" />
     <Compile Include="Script\GasPoweredGenerator.cs" />
     <Compile Include="Patchs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Generators\ThermoelectricGenerator\ThermoelectricGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="mod_info.yaml">

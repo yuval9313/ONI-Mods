@@ -59,7 +59,7 @@ namespace AdvancedGenerators.Generators
             bd.ViewMode = OverlayModes.Temperature.ID;
             bd.ModifiesTemperature = true;
 
-            bd.AudioCategory = AU_METAL;
+            bd.AudioCategory = MetalAudio;
             bd.PowerOutputOffset = new CellOffset(1, 0);
 
             return bd;

@@ -17,7 +17,7 @@ namespace AdvancedGenerators.Generators.Config
             bd.SelfHeatKilowattsWhenActive = Heat_Self;
 
             bd.ViewMode = OverlayModes.Power.ID;
-            bd.AudioCategory = AU_METAL;
+            bd.AudioCategory = MetalAudio;
 
             bd.PowerOutputOffset = bd.UtilityInputOffset = new CellOffset(0, 0);
             bd.UtilityOutputOffset = new CellOffset(2, 2);

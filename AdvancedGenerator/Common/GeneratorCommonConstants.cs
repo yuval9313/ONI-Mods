@@ -12,8 +12,8 @@ namespace AdvancedGenerators.Common
         public const float MeltingPoint = MELTING_POINT_KELVIN.TIER2;
         public const string TabCategory = "Power";
 
-        public const string AU_METAL = "Metal";
-        public const string AU_HOLLOWMETAL = "HollowMetal";
+        public const string MetalAudio = "Metal";
+        public const string HollowMetalAudio = "HollowMetal";
 
         public static LogicPorts.Port[] GetPorts(CellOffset offset) =>
             new[] { LogicPorts.Port.InputPort(

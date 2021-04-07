@@ -47,7 +47,7 @@ namespace AdvancedGenerators.Generators
 
             bd.ViewMode = OverlayModes.Power.ID;
 
-            bd.AudioCategory = AU_METAL;
+            bd.AudioCategory = MetalAudio;
 
             bd.UtilityInputOffset = new CellOffset(-1, 0);
             bd.PowerOutputOffset = new CellOffset(0, 0);
