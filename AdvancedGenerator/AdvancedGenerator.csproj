@@ -105,5 +105,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Generators\ThermoelectricGenerator\ThermoelectricGenerator.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="mod_info.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
