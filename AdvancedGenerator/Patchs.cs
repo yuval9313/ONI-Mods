@@ -29,12 +29,12 @@ namespace AdvancedGenerators
             ModUtil.AddBuildingToPlanScreen(TabCategory, RefinedCarbonGenerator.Id);
             ModUtil.AddBuildingToPlanScreen(TabCategory, ThermoelectricGenerator.Id);
             ModUtil.AddBuildingToPlanScreen(TabCategory, NaphthaGenerator.Id);
-            ModUtil.AddBuildingToPlanScreen(TabCategory, EcoFriendlyMethaneGenerator.ID);
+            ModUtil.AddBuildingToPlanScreen(TabCategory, EcoFriendlyMethaneGenerator.Id);
             
             InsertToTechTree("AdvancedPowerRegulation", RefinedCarbonGenerator.Id);
             InsertToTechTree("Plastics", NaphthaGenerator.Id);
             InsertToTechTree("RenewableEnergy", ThermoelectricGenerator.Id);
-            InsertToTechTree("ImprovedCombustion", EcoFriendlyMethaneGenerator.ID);
+            InsertToTechTree("ImprovedCombustion", EcoFriendlyMethaneGenerator.Id);
         }
         
         private static void InsertToTechTree(string group, string buildingId)
@@ -57,7 +57,7 @@ namespace AdvancedGenerators
             SetString(RefinedCarbonGenerator.IdUpper, RefinedCarbonGenerator.Name, RefinedCarbonGenerator.Description, RefinedCarbonGenerator.Effect);
             SetString(ThermoelectricGenerator.IdUpper, ThermoelectricGenerator.Name, ThermoelectricGenerator.Description, ThermoelectricGenerator.Effect);
             SetString(NaphthaGenerator.IdUpper, NaphthaGenerator.Name, NaphthaGenerator.Description, NaphthaGenerator.Effect);
-            SetString(EcoFriendlyMethaneGenerator.ID_UPPER, EcoFriendlyMethaneGenerator.NAME, EcoFriendlyMethaneGenerator.DESC, EcoFriendlyMethaneGenerator.EFFECT);
+            SetString(EcoFriendlyMethaneGenerator.IdUpper, EcoFriendlyMethaneGenerator.Name, EcoFriendlyMethaneGenerator.Description, EcoFriendlyMethaneGenerator.Effect);
         }
         
         private static void SetString(string path, string name, string description, string effect)

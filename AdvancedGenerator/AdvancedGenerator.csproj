@@ -91,8 +91,7 @@
   <ItemGroup>
     <Compile Include="Common\AdvancedEnergyGenerator.cs" />
     <Compile Include="Common\GeneratorCommonConstants.cs" />
-    <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGenerator.cs" />
-    <Compile Include="Generators\EcoFriendlyMethaneGenerator\EcoFriendlyMethaneGeneratorConfig.cs" />
+    <Compile Include="Generators\EcoFriendlyMethaneGenerator.cs" />
     <Compile Include="Generators\NaphthaGenerator.cs" />
     <Compile Include="Generators\ThermoelectricPowerGenerator.cs" />
     <Compile Include="Generators\ThermoelectricGenerator.cs" />
