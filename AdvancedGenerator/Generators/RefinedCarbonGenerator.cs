@@ -1,5 +1,4 @@
 ﻿using AdvancedGenerators.Common;
-using Epic.OnlineServices.Stats;
 using TUNING;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
@@ -10,8 +9,6 @@ namespace AdvancedGenerators.Generators
     internal class RefinedCarbonGenerator : IBuildingConfig
     {
         public const string Id = nameof(RefinedCarbonGenerator);
-        private const string AnimationString = "generatorphos_kanim";
-
         public static readonly LocString Name = Fal("Refined Carbon Generator", Id);
 
         public static readonly LocString Description =
@@ -23,7 +20,9 @@ namespace AdvancedGenerators.Generators
         private const int HitPoints = GeneratorCommonConstants.HitPoints;
         private const float ConstructTime = GeneratorCommonConstants.ConstructionTime;
         private const float MeltingPoint = GeneratorCommonConstants.MeltingPoint;
-        
+
+        private const string AnimationString = "generatorphos_kanim";
+
         private const int Watt = 1200;
         private const float CarbonBurnRate = 1f;
         private const float CarbonCapacity = 500f;
@@ -32,15 +31,16 @@ namespace AdvancedGenerators.Generators
         private const float Co2GenerationRate = 0.02f;
         private const float OutCo2Temperature = 348.15f;
 
-        private static readonly string[] Materials = new[] { MATERIALS.METAL, MATERIALS.BUILDABLERAW };
-        private static readonly float[] MateMassKg = new[] { BUILDINGS.MASS_KG.TIER5, BUILDINGS.MASS_KG.TIER4 };
+        private static readonly string[] Materials = new[] {MATERIALS.METAL, MATERIALS.BUILDABLERAW};
+        private static readonly float[] MateMassKg = new[] {BUILDINGS.MASS_KG.TIER5, BUILDINGS.MASS_KG.TIER4};
 
         public static readonly string IdUpper = Id.ToUpper();
-        
+
         public override BuildingDef CreateBuildingDef()
         {
             var bd = BuildingTemplates.CreateBuildingDef(Id, 3, 3, AnimationString, HitPoints, ConstructTime,
-                MateMassKg, Materials, MeltingPoint, BuildLocationRule.OnFloor, DECOR.PENALTY.TIER2, NOISE_POLLUTION.NOISY.TIER5);
+                MateMassKg, Materials, MeltingPoint, BuildLocationRule.OnFloor, DECOR.PENALTY.TIER2,
+                NOISE_POLLUTION.NOISY.TIER5);
 
             bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = Watt;
             bd.ExhaustKilowattsWhenActive = 0f;
@@ -68,7 +68,8 @@ namespace AdvancedGenerators.Generators
                 },
                 outputs = new EnergyGenerator.OutputItem[]
                 {
-                    new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, Co2GenerationRate, false, new CellOffset(1, 0), OutCo2Temperature)
+                    new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, Co2GenerationRate, false,
+                        new CellOffset(1, 0), OutCo2Temperature)
                 }
             };
             eg.powerDistributionOrder = 8;

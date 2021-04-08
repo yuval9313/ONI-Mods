@@ -9,6 +9,15 @@ namespace AdvancedGenerators.Generators
     public class ThermoelectricGenerator : IBuildingConfig
     {
         public const string Id = nameof(ThermoelectricGenerator);
+
+        public static readonly LocString Name = Fal("Thermoelectric Generator", Id);
+
+        public static readonly LocString Description = "Converts Heat and produces electricity.";
+
+        public static readonly string Effect =
+            $"Converts {Fal("Heat", "HEAT")} from environment to electrical {Fal("Power", "POWER")}.\n" +
+            $"{-HeatSelf - HeatExhaust} kDTUs per second.";
+
         private const int Width = 4;
         private const int Height = 3;
 
@@ -32,14 +41,6 @@ namespace AdvancedGenerators.Generators
 
         public static readonly LogicPorts.Port[] InputPorts = GetPorts(new CellOffset(1, 0));
 
-        public static readonly LocString Name = Fal("Thermoelectric Generator", Id);
-
-        public static readonly LocString Description =
-            $"Converts {Fal("Heat", "HEAT")} from environment to electrical {Fal("Power", "POWER")}.\n" +
-            $"{-HeatSelf - HeatExhaust} kDTUs per second.";
-
-        public const string Effect = "Converts Heat and produces electricity.";
-
         public static string SliderTooltipKey = "STRINGS.UI.UISIDESCREENS.WIRELESS_AUTOMATION_SIDE_SCREEN.TOOLTIP";
         public static string SliderTooltip = "Amount of heat that transfer from the environment to the generator.";
 
@@ -50,7 +51,8 @@ namespace AdvancedGenerators.Generators
 
         public override BuildingDef CreateBuildingDef()
         {
-            var bd = BuildingTemplates.CreateBuildingDef(Id, Width, Height, AnimationString, HitPoints, ConstructionTime,
+            var bd = BuildingTemplates.CreateBuildingDef(Id, Width, Height, AnimationString, HitPoints,
+                ConstructionTime,
                 _mateMassKg, _materials, MeltingPoint, BuildLocationRule.OnFloor, _decorRating, _noisePollutionRating);
 
             bd.GeneratorWattageRating = bd.GeneratorBaseCapacity = Watt;
