@@ -44,7 +44,7 @@ namespace AdvancedGenerators
         {
             public static void Postfix()
             {
-                MissileLogger.Log(" ----- Loading (DB Prefix) MOD: Advanced Generators v. 1.2.0 ----- ");
+                MissileLogger.Log(" ----- Loading MOD: Advanced Generators v. 1.3.0 ----- ");
                 SetupStrings();
 
                 ModUtil.AddBuildingToPlanScreen(TabCategory, RefinedCarbonGenerator.Id);
