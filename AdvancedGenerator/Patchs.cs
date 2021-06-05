@@ -11,21 +11,11 @@ namespace AdvancedGenerators
     [HarmonyPatch(nameof(Db.Initialize))]
     public static class Db_Initialize_Patch
     {
-        public static void Prefix()
-        {
-            Debug.Log(" ----- Loading (DB Prefix) MOD: Advanced Generators v. 1.1 ----- ");
-            // Vanilla prefers prefix for adding buildings
-#if VANILLA
-            SetupStrings();
-#endif
-        }
-
         public static void Postfix()
         {
-            // DLC prefers postfix for adding buildings
-#if SPACED_OUT
+            Debug.Log(" ----- Loading MOD: Advanced Generators v. 1.2 ----- ");
             SetupStrings();
-#endif
+            
             ModUtil.AddBuildingToPlanScreen(TabCategory, RefinedCarbonGenerator.Id);
             ModUtil.AddBuildingToPlanScreen(TabCategory, ThermoelectricGenerator.Id);
             ModUtil.AddBuildingToPlanScreen(TabCategory, NaphthaGenerator.Id);
@@ -37,19 +27,30 @@ namespace AdvancedGenerators
             InsertToTechTree("ImprovedCombustion", EcoFriendlyMethaneGenerator.Id);
         }
         
-        private static void InsertToTechTree(string group, string buildingId)
+        private static void InsertToTechTree(string techId, string buildingId)
         {
-#if VANILLA
-            var tech = new List<string>(Techs.TECH_GROUPING[group]) { buildingId };
-            Techs.TECH_GROUPING[group] = tech.ToArray();
-#endif
-#if SPACED_OUT
-            var techObj = Db.Get().Techs.TryGet(group);
-            if (techObj != null)
+            var tech_grouping = Traverse.Create(typeof(Techs))?.Field("TECH_GROUPING")?.GetValue<Dictionary<string, string[]>>();
+            var isVanilla = tech_grouping != null;
+            if (isVanilla)
             {
-                techObj.unlockedItemIDs.Add(buildingId);
+                if (tech_grouping.ContainsKey(techId))
+                {
+                    var techList = new List<string>(tech_grouping[techId]) { buildingId };
+                    tech_grouping[techId] = techList.ToArray();
+                }
+                else
+                    Debug.LogWarning($"Advanced Generators: Could not find '{techId}' tech in TECH_GROUPING.");
             }
-#endif
+            else
+            {
+                var tech = Db.Get()?.Techs.TryGet(techId);
+                if (tech != null)
+                {
+                    Traverse.Create(tech)?.Field("unlockedItemIDs")?.GetValue<List<string>>()?.Add(buildingId);
+                }
+                else
+                    Debug.LogWarning($"Advanced Generators: Could not find '{techId}' tech.");
+            }
         }
 
         private static void SetupStrings()
