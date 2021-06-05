@@ -4,7 +4,7 @@ using UnityEngine;
 using static EnergyGenerator;
 using static EventSystem;
 
-namespace AdvancedGeneratos.Common
+namespace AdvancedGenerators.Common
 {
     public class AdvancedEnergyGenerator : Generator
     {
@@ -52,24 +52,24 @@ namespace AdvancedGeneratos.Common
 
         protected virtual bool IsConvertible(float dt)
         {
-            bool flag = true;
-            EnergyGenerator.InputItem[] inputs = InOutItems.inputs;
-            for (int i = 0; i < inputs.Length; i++)
+            var flag = true;
+            var inputs = InOutItems.inputs;
+            foreach (var inputItem in inputs)
             {
-                EnergyGenerator.InputItem inputItem = inputs[i];
-                List<GameObject> result = new List<GameObject>();
-                List<GameObject> gameObject = InStorage.Find(inputItem.tag, result);
-                if (gameObject != null)
+                var result = new List<GameObject>();
+                var gameObjects = InStorage.Find(inputItem.tag, result);
+                if (gameObjects != null)
                 {
                     bool subflag = false;
-                    gameObject.ForEach(item =>
+                    var item1 = inputItem;
+                    gameObjects.ForEach(item =>
                     {
                         if (subflag)
                         {
                             return;
                         }
-                        PrimaryElement component = item.GetComponent<PrimaryElement>();
-                        float num = inputItem.consumptionRate * dt;
+                        var component = item.GetComponent<PrimaryElement>();
+                        float num = item1.consumptionRate * dt;
                         subflag = (component.Mass >= num);
                     });
                     flag = subflag;
@@ -96,14 +96,13 @@ namespace AdvancedGeneratos.Common
 
         protected virtual void MeterUpdate(float dt)
         {
-            if (HasMeter)
-            {
-                InputItem ind = InOutItems.inputs[0];
-                float percent = 0;
-                if (InStorage.FindFirstWithMass(ind.tag) is PrimaryElement first)
-                    percent = first.Mass / ind.maxStoredMass;
-                meter.SetPositionPercent(percent);
-            }
+            if (!HasMeter) return;
+            
+            var ind = InOutItems.inputs[0];
+            float percent = 0;
+            if (InStorage.FindFirstWithMass(ind.tag) is PrimaryElement first)
+                percent = first.Mass / ind.maxStoredMass;
+            meter.SetPositionPercent(percent);
         }
 
         protected virtual void GeneratePowerPre(float dt, bool logicOn)
@@ -141,10 +140,10 @@ namespace AdvancedGeneratos.Common
         protected virtual void ConsumedInput(InputItem inp, float dt) =>
             InStorage.ConsumeIgnoringDisease(inp.tag, inp.consumptionRate * dt);
 
-        protected virtual void EmitElements(PrimaryElement root_pe, Vector3 now, OutputItem oti, float dt)
+        protected virtual void EmitElements(PrimaryElement rootPrimaryElement, Vector3 now, OutputItem oti, float dt)
         {
             Element elbh = ElementLoader.FindElementByHash(oti.element);
-            float temp = Mathf.Max(root_pe.Temperature, oti.minTemperature), rate = oti.creationRate * dt;
+            float temp = Mathf.Max(rootPrimaryElement.Temperature, oti.minTemperature), rate = oti.creationRate * dt;
             if (oti.store)
                 if (elbh.IsGas)
                     OutStorage.AddGasChunk(oti.element, rate, temp, 255, 0, true);

@@ -1,19 +1,19 @@
 ﻿using static STRINGS.UI;
 using static TUNING.BUILDINGS;
 
-namespace AdvancedGeneratos.Common
+namespace AdvancedGenerators.Common
 {
     internal class GeneratorCommonConstants
     {
 
         public const string Kpath = "STRINGS.BUILDINGS.PREFABS.";
-        public const int HITPT = HITPOINTS.TIER1;
-        public const float ConstructTime = CONSTRUCTION_TIME_SECONDS.TIER3;
+        public const int HitPoints = HITPOINTS.TIER1;
+        public const float ConstructionTime = CONSTRUCTION_TIME_SECONDS.TIER3;
         public const float MeltingPoint = MELTING_POINT_KELVIN.TIER2;
         public const string TabCategory = "Power";
 
-        public const string AU_METAL = "Metal";
-        public const string AU_HOLLOWMETAL = "HollowMetal";
+        public const string MetalAudio = "Metal";
+        public const string HollowMetalAudio = "HollowMetal";
 
         public static LogicPorts.Port[] GetPorts(CellOffset offset) =>
             new[] { LogicPorts.Port.InputPort(
