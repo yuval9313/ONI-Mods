@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-// ReSharper disable StaticMemberInGenericType
 
 namespace MissileLib
 {
@@ -20,14 +19,14 @@ namespace MissileLib
         public static void InitLogger<T>() where T: ILogger, new()
         {
             Logger = new T();
-            _modInfo = DiscoverModInfo();
-            Logger.InitLogger(_modInfo ?? new PartialModInfo(Assembly.GetExecutingAssembly().GetName().Name));
+            var assembly = Assembly.GetExecutingAssembly(); // Can't be in another function, it changes the executing assembly.
+            _modInfo = DiscoverModInfo(assembly);
+            Logger.InitLogger(_modInfo ?? new PartialModInfo(assembly.GetName().Name));
             LogLoggerInitializationStatus();
         }
         
-        private static IModInfo DiscoverModInfo()
+        private static IModInfo DiscoverModInfo(Assembly assembly)
         {
-            var assembly = Assembly.GetExecutingAssembly();
             var modInfo = assembly.GetExportedTypes().FirstOrDefault(p => p.GetInterfaces().Contains(typeof(IModInfo)));
             if (modInfo == null) return null;
             var modInfoInstance = (IModInfo) Activator.CreateInstance(modInfo);
