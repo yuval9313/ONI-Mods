@@ -1,7 +1,9 @@
 ﻿using AdvancedGenerators.Common;
 
-namespace AdvancedGenerators
+
+namespace AdvancedGenerators.Generators
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public sealed class GasPoweredGenerator : AdvancedEnergyGenerator
     {
         [MyCmpGet]

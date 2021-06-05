@@ -60,6 +60,10 @@
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\System.dll</HintPath>
@@ -91,19 +95,35 @@
   <ItemGroup>
     <Compile Include="Common\AdvancedEnergyGenerator.cs" />
     <Compile Include="Common\GeneratorCommonConstants.cs" />
-    <Compile Include="Generators\EcoFriendlyMethaneGenerator.cs" />
-    <Compile Include="Generators\NaphthaGenerator.cs" />
+    <Compile Include="Common\IAdvancedGeneratorConfig.cs" />
+    <Compile Include="GeneratorsBuildConfigs\EcoFriendlyMethaneGenerator.cs" />
+    <Compile Include="GeneratorsBuildConfigs\NaphthaGenerator.cs" />
+    <Compile Include="GeneratorsBuildConfigs\ThermoelectricGenerator.cs" />
+    <Compile Include="GeneratorsBuildConfigs\RefinedCarbonGenerator.cs" />
+    <Compile Include="Generators\GasPoweredGenerator.cs" />
     <Compile Include="Generators\ThermoelectricPowerGenerator.cs" />
-    <Compile Include="Generators\ThermoelectricGenerator.cs" />
-    <Compile Include="Generators\RefinedCarbonGenerator.cs" />
-    <Compile Include="Script\GasPoweredGenerator.cs" />
+    <Compile Include="Models\GeneratorsConfigs.cs" />
+    <Compile Include="Models\ThermoelectricGeneratorConfig.cs" />
+    <Compile Include="ModInfo.cs" />
     <Compile Include="Patchs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="mod_info.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MissileLib\MissileLib.csproj">
+      <Project>{0f42f71f-3125-4c05-b493-70dea1f5d81b}</Project>
+      <Name>MissileLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
