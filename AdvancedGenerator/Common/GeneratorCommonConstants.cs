@@ -1,4 +1,5 @@
-﻿using static STRINGS.UI;
+﻿using UnityEngine;
+using static STRINGS.UI;
 using static TUNING.BUILDINGS;
 
 namespace AdvancedGenerators.Common
@@ -28,5 +29,7 @@ namespace AdvancedGenerators.Common
         public static readonly LogicPorts.Port[] INPUT_PORT_00 = GetPorts(new CellOffset(0, 0));
 
         public static string Fal(string text, string id) => FormatAsLink(text, id);
+        
+        public static void RegisterPorts(GameObject go) => GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }
