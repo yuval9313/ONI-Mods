@@ -1,20 +1,24 @@
 ﻿using AdvancedGenerators.Common;
+using AdvancedGenerators.Generators;
 using AdvancedGenerators.Models;
+using MissileLib;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
 
-namespace AdvancedGenerators.Generators
+namespace AdvancedGenerators.GeneratorsBuildConfigs
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class ThermoelectricGenerator : IBuildingConfig, IAdvancedGeneratorConfig
+    public class ThermoelectricGenerator : IBuildingConfig
     {
 #pragma warning disable 649
         private ThermoelectricGeneratorConfig _config;
 
-        public static string Id = nameof(ThermoelectricGenerator);
-        public LocString Name => Fal("Thermoelectric Generator", Id);
-        public string Description => "Converts Heat and produces electricity.";
-        public string Effect =>
+        public const string Id = nameof(ThermoelectricGenerator);
+
+        public static readonly LocString Name = Fal("Thermoelectric Generator", Id);
+        public const string Description = "Converts Heat and produces electricity.";
+
+        public static readonly string Effect =
             $"Converts {Fal("Heat", "HEAT")} from environment to electrical {Fal("Power", "POWER")}.";
         
         public static readonly string IdUpper = Id.ToUpper();
@@ -39,8 +43,9 @@ namespace AdvancedGenerators.Generators
 
             bd.AudioCategory = MetalAudio;
             bd.PowerOutputOffset = new CellOffset(1, 0);
+            bd.RequiresPowerOutput = true;
             
-            Debug.Log($"Config value is: {_config.Watt}");
+            MissileLogger.Log($"Config value is: {_config.Watt}");
             
             return bd;
         }
@@ -62,6 +67,11 @@ namespace AdvancedGenerators.Generators
 
             Tinkerable.MakePowerTinkerable(go);
             go.AddOrGetDef<PoweredActiveController.Def>();
+        }
+
+        public override string ToString()
+        {
+            return $"This is an instancee!!!! {Name}";
         }
     }
 }

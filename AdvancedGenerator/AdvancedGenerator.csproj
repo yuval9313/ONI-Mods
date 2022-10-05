@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdvancedGenerators</RootNamespace>
     <AssemblyName>AdvancedGenerators</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -42,10 +42,7 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="0Harmony, Version=2.0.5.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -95,7 +92,6 @@
   <ItemGroup>
     <Compile Include="Common\AdvancedEnergyGenerator.cs" />
     <Compile Include="Common\GeneratorCommonConstants.cs" />
-    <Compile Include="Common\IAdvancedGeneratorConfig.cs" />
     <Compile Include="GeneratorsBuildConfigs\EcoFriendlyMethaneGenerator.cs" />
     <Compile Include="GeneratorsBuildConfigs\NaphthaGenerator.cs" />
     <Compile Include="GeneratorsBuildConfigs\ThermoelectricGenerator.cs" />
@@ -110,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="mod_info.yaml">

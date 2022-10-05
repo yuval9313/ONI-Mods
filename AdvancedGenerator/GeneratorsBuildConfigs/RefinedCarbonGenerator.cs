@@ -3,7 +3,7 @@ using TUNING;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
 
-namespace AdvancedGenerators.Generators
+namespace AdvancedGenerators.GeneratorsBuildConfigs
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     internal class RefinedCarbonGenerator : IBuildingConfig
@@ -49,6 +49,9 @@ namespace AdvancedGenerators.Generators
 
             bd.AudioCategory = HollowMetalAudio;
             bd.AudioSize = "large";
+            
+            bd.PowerOutputOffset = new CellOffset(0, 0);
+            bd.RequiresPowerOutput = true;
 
             return bd;
         }
@@ -102,8 +105,5 @@ namespace AdvancedGenerators.Generators
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
-
-        private static void RegisterPorts(GameObject go) =>
-            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

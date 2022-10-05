@@ -1,9 +1,10 @@
 ﻿using AdvancedGenerators.Common;
+using AdvancedGenerators.Generators;
 using TUNING;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
 
-namespace AdvancedGenerators.Generators
+namespace AdvancedGenerators.GeneratorsBuildConfigs
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     public class EcoFriendlyMethaneGenerator : IBuildingConfig
@@ -62,6 +63,7 @@ namespace AdvancedGenerators.Generators
 
             bd.PowerOutputOffset = bd.UtilityInputOffset = new CellOffset(0, 0);
             bd.UtilityOutputOffset = new CellOffset(2, 2);
+            bd.RequiresPowerOutput = true;
 
             bd.PermittedRotations = PermittedRotations.FlipH;
 
@@ -139,7 +141,5 @@ namespace AdvancedGenerators.Generators
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
-
-        private static void RegisterPorts(GameObject go) => GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }

@@ -1,9 +1,9 @@
-﻿using AdvancedGenerators.Common;
+﻿using AdvancedGenerators.Generators;
 using TUNING;
 using UnityEngine;
 using static AdvancedGenerators.Common.GeneratorCommonConstants;
 
-namespace AdvancedGenerators.Generators
+namespace AdvancedGenerators.GeneratorsBuildConfigs
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     public class NaphthaGenerator : IBuildingConfig
@@ -114,8 +114,5 @@ namespace AdvancedGenerators.Generators
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
-
-        protected void RegisterPorts(GameObject go) =>
-            GeneratedBuildings.RegisterSingleLogicInputPort(go);
     }
 }
