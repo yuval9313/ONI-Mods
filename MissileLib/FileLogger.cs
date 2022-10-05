@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace MissileLib
 {
@@ -6,6 +7,7 @@ namespace MissileLib
     {
         private IModInfo _modInfo;
         private readonly string _playTime = System.DateTime.UtcNow.ToString("yy-MM-dd");
+        private string _logPath;
 
         public string LogsDir { get; set; }
         
@@ -14,14 +16,13 @@ namespace MissileLib
             _modInfo = modInfo;
             LogsDir = Path.Combine(Utilities.Utilities.RunFolder, "Logs");
             if (!Directory.Exists(LogsDir)) Directory.CreateDirectory(LogsDir);
+            var logName = $"{_playTime}-{_modInfo.Name}.log";
+            _logPath = Path.Combine(LogsDir, logName);
         }
 
         public void Log(string message)
         {
-            var logName = $"{_playTime}-{_modInfo.Name}.log";
-            var logPath = Path.Combine(LogsDir, logName);
-            if (!File.Exists(logPath)) File.Create(logPath);
-            using (var w = File.AppendText(logPath))
+            using (var w = File.AppendText(_logPath))
             {
                 w.WriteLine(message);
             }

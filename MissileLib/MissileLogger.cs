@@ -19,7 +19,7 @@ namespace MissileLib
         public static void InitLogger<T>() where T: ILogger, new()
         {
             Logger = new T();
-            var assembly = Assembly.GetExecutingAssembly(); // Can't be in another function, it changes the executing assembly.
+            var assembly = Assembly.GetCallingAssembly(); // Can't be in another function, it changes the executing assembly.
             _modInfo = DiscoverModInfo(assembly);
             Logger.InitLogger(_modInfo ?? new PartialModInfo(assembly.GetName().Name));
             LogLoggerInitializationStatus();
