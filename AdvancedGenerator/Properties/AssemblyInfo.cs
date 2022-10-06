@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // Build value and revision number are automatically set by specifying all values or using '*' as shown below
 // can be specified
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.0")]
-[assembly: AssemblyFileVersion("1.4.0")]
+[assembly: AssemblyVersion("1.5.0")]
+[assembly: AssemblyFileVersion("1.5.0")]
