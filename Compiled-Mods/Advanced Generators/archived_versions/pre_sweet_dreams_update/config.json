@@ -1,0 +1,10 @@
+﻿{
+  "ThermoelectricGeneratorConfig": {
+    "Watt": 256,
+    "HeatSelf": -10,
+    "HeatExhaust": -118,
+    "MinimumTemp": 283.15,
+    "SliderTooltip": "Amount of heat that transfer from the environment to the generator.",
+    "SliderTitle": "Cooling aggressiveness"
+  }
+}
