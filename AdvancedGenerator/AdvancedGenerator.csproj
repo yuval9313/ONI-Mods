@@ -24,22 +24,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SPACED_OUT|AnyCPU' ">
-    <OutputPath>bin\spaced-out\</OutputPath>
-    <DefineConstants>SPACED_OUT</DefineConstants>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'VANILLA|AnyCPU' ">
-    <OutputPath>bin\vanilla\</OutputPath>
-    <DefineConstants>VANILLA</DefineConstants>
-    <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.0.5.0, Culture=neutral, PublicKeyToken=null">
