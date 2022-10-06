@@ -60,14 +60,14 @@ namespace AdvancedGenerators.GeneratorsBuildConfigs
         {
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
 
-            var t = GameTagExtensions.Create(SimHashes.RefinedCarbon);
+            var refinedCarbonTag = GameTagExtensions.Create(SimHashes.RefinedCarbon);
 
             var eg = go.AddOrGet<EnergyGenerator>();
             eg.formula = new EnergyGenerator.Formula
             {
                 inputs = new EnergyGenerator.InputItem[]
                 {
-                    new EnergyGenerator.InputItem(t, CarbonBurnRate, CarbonCapacity)
+                    new EnergyGenerator.InputItem(refinedCarbonTag, CarbonBurnRate, CarbonCapacity)
                 },
                 outputs = new EnergyGenerator.OutputItem[]
                 {
@@ -87,7 +87,7 @@ namespace AdvancedGenerators.GeneratorsBuildConfigs
             var manualDeliveryKg = go.AddOrGet<ManualDeliveryKG>();
             manualDeliveryKg.allowPause = false;
             manualDeliveryKg.SetStorage(st);
-            manualDeliveryKg.requestedItemTag = t;
+            manualDeliveryKg.RequestedItemTag = refinedCarbonTag;
             manualDeliveryKg.capacity = st.capacityKg;
             manualDeliveryKg.refillMass = RefillCapacity;
             manualDeliveryKg.choreTypeIDHash = Db.Get().ChoreTypes.PowerFetch.IdHash;
