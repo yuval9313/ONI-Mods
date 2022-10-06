@@ -38,7 +38,7 @@ namespace AdvancedGenerators.GeneratorsBuildConfigs
         private const float OxygenConsumptionRate = 0.1f;
         private const float ExhaustCo2 = 0.03f;
 
-        private static readonly Tag Filter = new Tag("Filter");
+        private static readonly Tag FiltrationMediumTag = new Tag("Filter");
 
         private static readonly string[] Materials = new[] {MATERIALS.METAL, MATERIALS.REFINED_METAL};
         private static readonly float[] MateMassKg = new[] {BUILDINGS.MASS_KG.TIER5, BUILDINGS.MASS_KG.TIER1};
@@ -110,7 +110,7 @@ namespace AdvancedGenerators.GeneratorsBuildConfigs
             manualDeliveryKg.allowPause = false;
             manualDeliveryKg.capacity = FilterMaxStored;
             manualDeliveryKg.refillMass = 10;
-            manualDeliveryKg.requestedItemTag = Filter;
+            manualDeliveryKg.RequestedItemTag = FiltrationMediumTag;
             manualDeliveryKg.choreTypeIDHash = Db.Get().ChoreTypes.GeneratePower.Id;
             
             var adg = go.AddOrGet<GasPoweredGenerator>();
@@ -121,7 +121,7 @@ namespace AdvancedGenerators.GeneratorsBuildConfigs
                 {
                     new EnergyGenerator.InputItem(cc.capacityTag, UseMethane, 1),
                     new EnergyGenerator.InputItem(SimHashes.Oxygen.CreateTag(), ExhaustCo2, OxygenMaxStored),
-                    new EnergyGenerator.InputItem(Filter, ExhaustH2O, 50)
+                    new EnergyGenerator.InputItem(FiltrationMediumTag, ExhaustH2O, 50)
                 },
                 outputs = new[]
                 {
