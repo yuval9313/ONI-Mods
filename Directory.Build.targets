@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Target Name="SetPlatform" BeforeTargets="CoreCompile">
+    <PropertyGroup>
+      <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="GenerateRefAssemblies" AfterTargets="Clean" Condition=" '$(GameFolderActive)' != '../Lib' ">
+    <Exec Command="Refasmer -v -O ../Lib --all -c^
+    $(GameFolderActive)/Assembly-CSharp.dll $(GameFolderActive)/Assembly-CSharp-firstpass.dll $(GameFolderActive)/0Harmony.dll ^
+    $(GameFolderActive)/UnityEngine.CoreModule.dll $(GameFolderActive)/UnityEngine.ImageConversionModule.dll ^
+    $(GameFolderActive)/Newtonsoft.Json.dll"
+    IgnoreExitCode="true"/>
+  </Target>
+
+  <Target Name="ClearGameFolderCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="$(GameFolderActive)\*" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="WriteModInfoFile" BeforeTargets="PreBuildEvent" Condition=" '$(DistributeMod)' == 'true' ">
+    <PropertyGroup>
+      <ModInfoFile>$(IntermediateOutputPath)\mod_info.yaml</ModInfoFile>
+      <ModInfoFileContent>
+supportedContent: $(SupportedContent)
+minimumSupportedBuild: $(LastWorkingBuild)
+version: $(FileVersion)
+APIVersion: $(APIVersion)
+      </ModInfoFileContent>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(ModInfoFile)" Overwrite="true" Lines="$(ModInfoFileContent)"/>
+  </Target>
+
+  <Target Name="WriteModDescriptionFile" BeforeTargets="PreBuildEvent" Condition=" '$(DistributeMod)' == 'true' ">
+    <PropertyGroup>
+      <ModDescriptionFile>$(IntermediateOutputPath)\mod.yaml</ModDescriptionFile>
+      <ModDescriptionFileContent>
+title: "$(AssemblyTitle)"
+description: "$(Description)"
+staticID: Missilexent.$(AssemblyName)
+      </ModDescriptionFileContent>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(ModDescriptionFile)" Overwrite="true" Lines="$(ModDescriptionFileContent)"/>
+  </Target>
+
+  <Target Name="CopyArtifactsToInstallFolder" Condition=" '$(DistributeMod)' == 'true' ">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <RootInstallFolder>..\Release\$(ProjectName)</RootInstallFolder>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <RootInstallFolder>$(ModFolder)\$(ProjectName)</RootInstallFolder>
+    </PropertyGroup>
+    <PropertyGroup>
+      <InstallFolder>$(RootInstallFolder)$(ArchivedVersionPath)</InstallFolder>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <YamlFiles Include="$(ProjectDir)\*.yaml" />
+    </ItemGroup>  
+
+    <Copy SourceFiles="@(YamlFiles)" DestinationFolder="$(InstallFolder)" />
+    <Copy SourceFiles="$(ModInfoFile)" DestinationFolder="$(InstallFolder)" />
+    <Copy SourceFiles="$(ModDescriptionFile)" DestinationFolder="$(RootInstallFolder)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(InstallFolder)\$(TargetFileName)" />
+  </Target>
+</Project>

@@ -1,87 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A7BD7D5D-3834-4EFF-8875-FC51EBFE33E3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyTitle>Advanced Generators</AssemblyTitle>
     <RootNamespace>AdvancedGenerators</RootNamespace>
     <AssemblyName>AdvancedGenerators</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Description>Optimizes Oxygen Not Included to improve performance.</Description>
+    <AssemblyVersion>1.5.0</AssemblyVersion>
+    <LastWorkingBuild>651155</LastWorkingBuild>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Q3BETA</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.5.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DLLs\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DLLs\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DLLs\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\System.dll</HintPath>
-    </Reference>
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\System.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Remoting" />
-    <Reference Include="System.Web.RegularExpressions" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DLLs\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DLLs\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Common\AdvancedEnergyGenerator.cs" />
-    <Compile Include="Common\GeneratorCommonConstants.cs" />
-    <Compile Include="GeneratorsBuildConfigs\EcoFriendlyMethaneGenerator.cs" />
-    <Compile Include="GeneratorsBuildConfigs\NaphthaGenerator.cs" />
-    <Compile Include="GeneratorsBuildConfigs\ThermoelectricGenerator.cs" />
-    <Compile Include="GeneratorsBuildConfigs\RefinedCarbonGenerator.cs" />
-    <Compile Include="Generators\GasPoweredGenerator.cs" />
-    <Compile Include="Generators\ThermoelectricPowerGenerator.cs" />
-    <Compile Include="Models\GeneratorsConfigs.cs" />
-    <Compile Include="Models\ThermoelectricGeneratorConfig.cs" />
-    <Compile Include="ModInfo.cs" />
-    <Compile Include="Patchs.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
   <ItemGroup>
     <Content Include="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -95,13 +27,11 @@
     <Content Include="SteamDescription.md" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\MissileLib\MissileLib.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MissileLib\MissileLib.csproj">
-      <Project>{0f42f71f-3125-4c05-b493-70dea1f5d81b}</Project>
-      <Name>MissileLib</Name>
-    </ProjectReference>
+    <Compile Remove="Generators\EcoFriendlyMethaneGenerator.cs" />
+    <Compile Remove="Generators\RefinedCarbonGenerator.cs" />
+    <Compile Remove="Generators\ThermoelectricGenerator.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

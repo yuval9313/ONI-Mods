@@ -73,7 +73,7 @@ namespace AdvancedGenerators
                 {
                     if (_techGrouping.ContainsKey(techId))
                     {
-                        var techList = new List<string>(_techGrouping[techId]) {buildingId};
+                        var techList = new List<string>(_techGrouping[techId]) { buildingId };
                         _techGrouping[techId] = techList.ToArray();
                     }
                     else
