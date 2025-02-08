@@ -59,6 +59,9 @@ namespace AdvancedGenerators.GeneratorsBuildConfigs
             GeneratorCommonConstants.RegisterPorts(go);
             go.AddOrGet<LogicOperationalController>();
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
+            go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.PowerBuilding);
+            go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.GeneratorType);
+            go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.HeavyDutyGeneratorType);
 
             go.AddOrGet<LoopingSounds>();
 

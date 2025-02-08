@@ -8,6 +8,19 @@
     <ProjectReference Private="True" />
   </ItemDefinitionGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <Target Name = "clean">
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
@@ -16,7 +29,6 @@
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(GameFolder)/Assembly-CSharp-firstpass.dll" />
     <Reference Include="UnityEngine" HintPath="$(GameFolder)/UnityEngine.dll" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(GameFolder)/UnityEngine.CoreModule.dll" />
-    <Reference Include="System.IO.Compression" HintPath="$(GameFolder)/System.IO.Compression.dll" />
     <Reference Include="0Harmony" HintPath="$(GameFolder)/0Harmony.dll" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -24,6 +36,7 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+
   <PropertyGroup>
     <Product>MissilexentOniMods</Product>
     <Authors>Yuval Levi</Authors>
@@ -33,6 +46,8 @@
     <LastWorkingBuild>0</LastWorkingBuild>
     <DistributeMod>true</DistributeMod>
     <ArchivedVersionPath>./archived_versions</ArchivedVersionPath>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/yuval9313/ONI-Mods</RepositoryUrl>
 
     <!-- Note: 'MSB3277' Required (for System.IO.Compression version mismatch warning) -->
     <NoWarn>$(NoWarn);IDE1006;IDE0290;IDE0130;MSB3277</NoWarn>

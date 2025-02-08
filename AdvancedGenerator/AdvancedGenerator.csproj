@@ -1,18 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyTitle>Advanced Generators</AssemblyTitle>
+    <Title>Advanced Generators</Title>
+    <AssemblyTitle>AdvancedGenerators</AssemblyTitle>
+    <AssemblyName>Advanced Generators</AssemblyName>
     <RootNamespace>AdvancedGenerators</RootNamespace>
-    <AssemblyName>AdvancedGenerators</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Description>Optimizes Oxygen Not Included to improve performance.</Description>
-    <AssemblyVersion>1.5.0</AssemblyVersion>
+    <Description>Adds new generators to the game</Description>
+    <AssemblyVersion>1.6.0</AssemblyVersion>
+    <Version>1.6.0</Version>
+    <Optimize>true</Optimize>
     <LastWorkingBuild>651155</LastWorkingBuild>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>TRACE;DEBUG;Q3BETA</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="config.json">
